@@ -1,6 +1,6 @@
 ---
-name: 01-executionlead
-description: Orchestrates the Azure demo builder workflow end-to-end, coordinating specialized agents (Validation, Architect, Design, Bicep, Development, Deploy, DemoGuide) through a seven-step development cycle with automatic handoffs.
+name: 01-conductor
+description: Conducts the Azure demo builder workflow end-to-end, coordinating specialized agents (Validation, Architect, Design, Bicep, Development, Deploy, DemoGuide) through a seven-step development cycle with automatic handoffs.
 model: "Claude Opus 4.6"
 argument-hint: Provide a scenario description for the Azure infrastructure project you want to build
 user-invokable: true
@@ -69,9 +69,9 @@ tools:
   ]
 ---
 
-# executionlead Agent
+# Conductor Agent
 
-Execution Lead for the Azure demo builder workflow.
+Conductor for the Azure demo builder workflow.
 
 > [!CAUTION]
 > **HARD RULE — EXTRACT CONTEXT BEFORE YOU READ**
@@ -275,7 +275,7 @@ Use `#runSubagent` for each workflow step:
 | 3    | Design       | Generate **both** architecture diagram AND runtime flow diagram, plus ADRs. **VERIFY both PNGs exist before proceeding.**                                                                                             |
 | 4    | Bicep        | Run governance discovery, plan, generate Bicep templates, generate dependency + runtime diagrams, and validate per 02-architecture-assessment.md                                                                      |
 | 4b   | Development  | Scaffold .NET 10 sample webapp with {industry} seed data, wire into azure.yaml, validate build. **Skip if VM-only or user declined.**                                                                                 |
-| 5    | Deploy       | Run what-if analysis, prompt user, deploy to Azure with `azd up`, generate 06-deployment-summary.md. **MUST attempt actual deployment. On failure, report back so executionlead can prompt the user for a decision.** |
+| 5    | Deploy       | Run what-if analysis, prompt user, deploy to Azure with `azd up`, generate 06-deployment-summary.md. **MUST attempt actual deployment. On failure, report back so the conductor can prompt the user for a decision.** |
 | 6    | DemoGuide    | Generate audience-aware demo runbook with **Playwright screenshots** of deployed resources. **VERIFY screenshots exist in `demoguide/images/` before marking complete.**                                              |
 | 7    | Contribute   | Validate artifacts, fork repo, create branch, commit scenario, open draft PR, optionally create tracking issue. **User must explicitly opt in — never auto-trigger.**                                                  |
 

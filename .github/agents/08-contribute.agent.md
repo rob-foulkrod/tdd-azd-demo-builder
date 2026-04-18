@@ -83,7 +83,7 @@ cross-fork draft PR, and optionally filing a tracking GitHub Issue.
 
 ### Phase 0: Parse Input
 
-1. Accept the project folder name from the user or the executionlead handoff
+1. Accept the project folder name from the user or the conductor handoff
 2. Verify `scenario/{project}/` exists on disk
 3. Derive variables:
    - `PROJECT` = the folder name (e.g., `sentinel-threat-detection`)

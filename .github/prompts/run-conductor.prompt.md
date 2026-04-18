@@ -1,6 +1,6 @@
 ---
 description: "Run the full Azure infrastructure workflow end-to-end"
-agent: "01-executionlead"
+agent: "01-conductor"
 model: "Claude Opus 4.6"
 tools:
   - agent
@@ -12,7 +12,7 @@ tools:
 argument-hint: Describe the Azure infrastructure project you want to build
 ---
 
-# Run executionlead — End-to-End Workflow
+# Run Conductor — End-to-End Workflow
 
 Orchestrate the complete Azure infrastructure development workflow
 for a new project, delegating to specialized agents with automatic handoffs

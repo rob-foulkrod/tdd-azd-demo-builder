@@ -176,7 +176,7 @@ The user's natural language message is the entry point. It flows to whichever
 agent is selected in the VS Code chat panel. The prompt does not need special
 syntax — just describe what you want.
 
-The **Execution Lead** agent is designed as the default entry point. It parses
+The **Conductor** agent is designed as the default entry point. It parses
 the user's prompt, derives a project name, and delegates to specialized agents
 in sequence. You can also invoke any agent directly if you only need one step
 (e.g., select **05-Bicep** and ask it to regenerate templates for an existing
@@ -189,7 +189,7 @@ project).
 When you type a message in VS Code Copilot Chat, here is what happens:
 
 ```
-1. User selects an agent (e.g., "01-executionlead") and types a prompt
+1. User selects an agent (e.g., "01-conductor") and types a prompt
 2. VS Code loads the agent's .agent.md file (front matter + body = system prompt)
 3. VS Code checks which files the agent will touch and auto-injects matching instructions
 4. The agent's body tells it to read specific skills (via read_file tool calls)
@@ -321,8 +321,8 @@ The agent system requires specific VS Code settings in `.vscode/settings.json`:
 
 ### How the Bicep Agent Uses All Four
 
-1. **Prompt**: User asks the Execution Lead to build an Azure scenario
-2. **Agent**: Execution Lead delegates to `05-Bicep` via `runSubagent`
+1. **Prompt**: User asks the Conductor to build an Azure scenario
+2. **Agent**: Conductor delegates to `05-Bicep` via `runSubagent`
 3. **Skills**: Bicep agent reads `SKILL.md` for AVM module table, naming
    conventions, security baseline, and deployer RBAC patterns
 4. **Instructions**: When the agent creates `infra/main.bicep`, VS Code
@@ -330,10 +330,10 @@ The agent system requires specific VS Code settings in `.vscode/settings.json`:
 5. **Templates**: Agent reads `04-implementation-plan.template.md` to
    know the exact H2 structure required for the plan artifact
 
-### How the Execution Lead Orchestrates
+### How the Conductor Coordinates
 
 ```
-executionlead receives user prompt
+conductor receives user prompt
     │
     ├─ runSubagent("02-Validations", "Parse scenario and generate requirements")
     │   └─ Validations agent writes 01-requirements.md

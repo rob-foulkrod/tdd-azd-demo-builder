@@ -6,8 +6,8 @@
 ## Quick Start
 
 1. Enable subagents: `"github.copilot.chat": { "customAgentInSubagent": { "enabled": true } }`
-2. Open Chat (`Ctrl+Shift+I`) → Select **executionlead** → Describe your project
-3. The executionlead guides you through all 7 steps with automatic handoffs
+2. Open Chat (`Ctrl+Shift+I`) → Select **conductor** → Describe your project
+3. The conductor guides you through all 7 steps with automatic handoffs
 
 ## Workflow
 
